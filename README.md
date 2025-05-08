@@ -26,7 +26,7 @@ Brief summary of the project:
 
 Below is the high-level architecture of the project:
 
-![Architecture Diagram](assets/architecture.png)
+![Architecture Diagram](assets/ui.png)
 
 > _Tip: You can design your diagram using tools like [draw.io](https://draw.io), [Lucidchart](https://lucidchart.com), or [Excalidraw](https://excalidraw.com). Save the image in your project folder (e.g., `assets/architecture.png`) and update the path above._
 
