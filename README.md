@@ -17,10 +17,10 @@ Brief summary of the project:
 - Mr.Sirapat Pengchan - B6524951 - [GitHub](https://github.com/username)
 - Mr.Sorrawit Poonnaimueng - B6525781 - [GitHub](https://github.com/A12ise)
 
-> Course: ENG23 3074 Serverless and Cloud Architectures
-> Instructor: Asst. Prof. Dr. Nuntawut Kaoungku 
-> University: Suranaree University of Technology
-> Semester/Term: 03/2025
+> Course: ENG23 3074 Serverless and Cloud Architectures <br>
+> Instructor: Asst. Prof. Dr. Nuntawut Kaoungku <br>
+> University: Suranaree University of Technology <br>
+> Semester/Term: 03/2025 <br>
 
 ## 🏗️ System Architecture
 
