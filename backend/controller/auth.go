@@ -63,7 +63,6 @@ func SignIn(c *gin.Context) {
 		expirationTime := time.Now().Add(time.Hour * time.Duration(jwtWrapper.ExpirationHours)).Unix()
 
 		c.JSON(http.StatusOK, gin.H{
-			"type":            "Member",
 			"token_type":      "Bearer",
 			"token":           signedToken,
 			"memberID":        member.ID,

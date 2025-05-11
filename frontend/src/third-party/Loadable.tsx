@@ -1,5 +1,5 @@
-import { Suspense, ComponentType } from "react";
-import Loader from "./Loader.tsx";
+import { Suspense, type ComponentType } from "react";
+import Loader from "./Loader";
 
 const Loadable =
   <P extends object>(Component: ComponentType<P>): ComponentType<P> =>

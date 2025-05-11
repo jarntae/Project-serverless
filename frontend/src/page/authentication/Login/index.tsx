@@ -1,89 +1,98 @@
-import { Form, Input, message } from "antd";
-import { SignInAdmin } from "../../../services/https";
-import './index.css'
+import { Button, Card, Form, Input, message, Row, Col } from "antd";
+import { useNavigate } from "react-router-dom";
+import { SignIn } from "../../../service/https/index";
+import type { LoginInterface } from "../../../interface/Login";
+import logo from "../../../assets/logo.png";
+import "./login.css";
+import { useState } from "react";
 
+function LoginPages() {
+  const navigate = useNavigate();
+  const [messageApi, contextHolder] = message.useMessage();
+  const [isSubmitting, setIsSubmitting] = useState(false); // Controls button disable state
+  const [form] = Form.useForm();
 
-function SignInPages() {
+  // This function gets triggered when user starts typing in the password field
+  const handlePasswordChange = () => {
+    setIsSubmitting(false);
+  };
 
-    const [messageApi, contextHolder] = message.useMessage();
+  const onFinish = async (values: LoginInterface) => {
+    setIsSubmitting(true);
+    let res = await SignIn(values);
 
-    const onFinish = async (values: { email: string; password: string }) => {
-        const { email, password } = values;
+    // Handle the server response
+    if (res.status === 200) {
+        messageApi.success("เข้าสู่ระบบสำเร็จ");
+        localStorage.setItem("isLogin", "true");
+        localStorage.setItem("page", "dashboard");
+        localStorage.setItem("token_type", res.data.token_type);
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("memberID", res.data.memberID);
+        localStorage.setItem("token_expiration", res.data.token_expiration);
 
-        try {
-            const adminValues: SignInAdminInterface = { email, password };
-            const res = await SignInAdmin(adminValues);
+        setTimeout(() => {
+            navigate("/dashboard");
+        }, 1000);
 
-            if (res.status === 200) {
-                messageApi.success("Admin sign-in successful");
-                localStorage.setItem("isLogin", "true");
-                localStorage.setItem("page", "admin-dashboard");
-                localStorage.setItem("token_type", res.data.token_type);
-                localStorage.setItem("token", res.data.token);
-                localStorage.setItem("profile", res.data.profile);
-                localStorage.setItem("id", res.data.id);
-                localStorage.setItem("role", "admin");
-
-                setTimeout(() => {
-                    location.href = "/dashboard";
-                }, 2000);
-            } else {
-                messageApi.error(res.data.error);
-            }
-        } catch {
-            messageApi.error("Sign-in failed. Please try again.");
-        }
+    } else {
+        messageApi.error(res.data.error);
+        setIsSubmitting(true); // Button stays disabled until password is changed
+    }
     };
 
-    return (
-        <>
-            {contextHolder}
-            <div className="container">
-                <div className="left">
-                    <div className="header">
-                        <h2 className="animation a1">Welcome To NEXT SUT</h2>
-                        <h4 className="animation a2">Log in to your account using email and password</h4>
-                    </div>
-                    <div className="form">
-                        <Form
-                            name="basic"
-                            onFinish={onFinish}
-                            autoComplete="off"
-                            layout="vertical"
-                        >
-                            <Form.Item
-                                label="Email"
-                                name="email"
-                                rules={[
-                                    { required: true, message: "Please input your email!" },
-                                    { type: "email", message: "Please enter a valid email!" },
-                                ]}
-                            >
-                                <Input />
-                            </Form.Item>
-                            <Form.Item
-                                label="Password"
-                                name="password"
-                                rules={[
-                                    { required: true, message: "Please input your password!" },
-                                ]}
-                            >
-                                <Input.Password />
-                            </Form.Item>
+  return (
+    <>
+      {contextHolder}
+      <div className="login-container">
+        <img src={logo} className="card-logo" />
 
-                            <Form.Item>
+        <Card className="card-login">
+          <Form form={form} name="login" onFinish={onFinish} layout="vertical">
+            <Row gutter={[16, 8]} style={{ padding: "30px", justifyContent: "center" }}>
+              <h2>ลงชื่อเข้าใช้</h2>
 
-                                <button className="button-login" type="submit" >
-                                    <span>LOG IN</span>
-                                </button>
-                            </Form.Item>
-                        </Form>
-                    </div>
-                </div>
-                <div className="right"></div>
-            </div>
-        </>
-    );
+              <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                <Form.Item
+                  label="Email"
+                  name="email"
+                  rules={[{ required: true, message: "Please input your email!" }]}
+                >
+                  <Input placeholder="กรุณากรอกอีเมล" className="login-form" />
+                </Form.Item>
+              </Col>
+
+              <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                <Form.Item
+                  label="Password"
+                  name="password"
+                  rules={[{ required: true, message: "Please input your password!" }]}
+                >
+                  <Input.Password
+                    placeholder="กรุณากรอกรหัสผ่าน"
+                    className="login-form"
+                    onChange={handlePasswordChange} // Re-enable the button when password is changed
+                  />
+                </Form.Item>
+              </Col>
+
+              <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                <Form.Item>
+                  <Button
+                    htmlType="submit"
+                    className="login-button"
+                    disabled={isSubmitting} // Disable the button if isSubmitting is true
+                  >
+                    ลงชื่อเข้าใช้
+                  </Button>
+                </Form.Item>
+              </Col>
+            </Row>
+          </Form>
+        </Card>
+      </div>
+    </>
+  );
 }
 
-export default SignInPages;
+export default LoginPages;

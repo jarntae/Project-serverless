@@ -2,13 +2,14 @@ package entity
 
 import (
 	"gorm.io/gorm"
+	"time"
 )
 
 type Ledger struct {
 	gorm.Model
 	Description string 
 	Amount  float64 `valid:"required~Amount is required"`
-	Date    string 	`valid:"required~Date is required,dateFormat~Invalid date format"`
+	Date    time.Time 	`valid:"required~Date is required,dateFormat~Invalid date format"`
 
 	MemberID	uint		`valid:"required~MemberID is required"`
 	Member		Member		`gorm:"foreignKey: member_id"`
