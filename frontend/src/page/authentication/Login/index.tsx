@@ -2,8 +2,8 @@ import { Button, Card, Form, Input, message, Row, Col } from "antd";
 import { useNavigate } from "react-router-dom";
 import { SignIn } from "../../../service/https/index";
 import type { LoginInterface } from "../../../interface/Login";
-import logo from "../../../assets/logo.png";
-import "./login.css";
+import logo from "../../../assets/react.svg";
+// import "./login.css";
 import { useState } from "react";
 
 function LoginPages() {

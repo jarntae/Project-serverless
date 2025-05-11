@@ -16,7 +16,7 @@ const MainRoutes = (isLoggedIn : boolean): RouteObject => {
     element: isLoggedIn ? <FullLayout /> : <SignInPages />,
     children: [
       {
-        path: "/dashbord",
+        path: "/dashboard",
         element: <Dashboard />,
       },
     ],

@@ -7,7 +7,7 @@ import { Breadcrumb, Layout, theme, message } from "antd";
 // import BarMember from "../Header/member.tsx"
 // import BarEmployee from "../Header/employee.tsx"
 
-import Dashboard from "../../page/Dashboard/";
+import Dashboard from "../../page/Dashboard";
 import LoginPages from "../../page/authentication/Login";
 
 // import Room from "../Pages/Room/index.tsx"
