@@ -25,67 +25,58 @@ func ConnectionDB() {
 func SetupDatabase() {
 	db.AutoMigrate(
 		&entity.Member{},
-		// &entity.Employee{},
-		// &entity.Gender{},
-		// &entity.Position{},
-		// &entity.Room{},
-		// &entity.PetAllow{},
-		// &entity.RoomType{},
-		// &entity.Booking{},
-		// &entity.Facility{},
-		// &entity.FacilityStatus{},
-		// &entity.FacilityType{},
+		&entity.Ledger{},
+		&entity.Money_Type{},
+		&entity.Category_Type{},
 	)
 	
-	// GenderMale := entity.Gender{Name: "ชาย"}
-	// GenderFemale := entity.Gender{Name: "หญิง"}
-	// GenderOther := entity.Gender{Name: "อื่นๆ"}
-	
-	// PetAllow := entity.PetAllow{Name: "อนุญาต"}
-	// PetNotAllow := entity.PetAllow{Name: "ไม่อนุญาต"}
-	
-	// RoomAvaliable := entity.RoomType{Name: "พร้อมใช้งาน"}
-	// RoomNotAvaliable := entity.RoomType{Name: "มีผู้พักอาศัย"}
-	// RoomMaintenance := entity.RoomType{Name: "ซ่อมบำรุง"}
-	
-	// PositionDormitoryAdmin := entity.Position{Name: "ไอที"}
-	// PositionDormitoryCaretaker := entity.Position{Name: "ผู้ดูแลหอพัก"}
-	// PositionDormitorySecurityGuard := entity.Position{Name: "ผู้ดูแลรักษาความปลอดภัยหอพัก"}
-	// PositionDormitoryMaid := entity.Position{Name: "แม่บ้าน"}
-	// PositionDormitoryMaintenanceTechnician := entity.Position{Name: "ช่างซ่อมบำรุง"}
-	// PositionDormitoryMember := entity.Position{Name: "ผู้พักอาศัย"}
+	Income := entity.Money_Type{Type: "รายรับ"}
+	Outcome := entity.Money_Type{Type: "รายจ่าย"}
 
-	// FacilityOpen := entity.FacilityStatus{Name: "เปิดใช้งาน"}
-	// FacilityClose := entity.FacilityStatus{Name: "ปิดใช้งาน"}
-	// FacilityMaintenace := entity.FacilityStatus{Name: "ซ่อมบำรุง"}
+	Food_drink := entity.Category_Type{Category_Name: "มื้ออาหาร/เครื่องดื่ม"}
+	Shopping := entity.Category_Type{Category_Name: "ช้อปปิ้ง"}
+	Family_Personal := entity.Category_Type{Category_Name: "ครอบครัว/ส่วนตัว"}
+	Invest := entity.Category_Type{Category_Name: "ออมเงิน/ลงทุน"}
+	Bill := entity.Category_Type{Category_Name: "ชำระบิล"}
+	Entertainment := entity.Category_Type{Category_Name: "บันเทิง"}
+	Gift_give := entity.Category_Type{Category_Name: "ของขวัญ/บริจาค"}
+	Transport := entity.Category_Type{Category_Name: "ค่าเดินทาง"}
+	Education := entity.Category_Type{Category_Name: "การศึกษา"}
+	Hotel_Travel := entity.Category_Type{Category_Name: "โรงแรม/ท่องเที่ยว"}
+	Insure := entity.Category_Type{Category_Name: "ประกัน"}
+	Withdraw := entity.Category_Type{Category_Name: "ถอนเงิน"}
+	Healty_Beauty := entity.Category_Type{Category_Name: "สุขภาพ/ความงาม"}
+	Pet := entity.Category_Type{Category_Name: "สัตว์เลี้ยง"}
+	Home := entity.Category_Type{Category_Name: "บ้าน/ที่พักอาศัย"}
+	Repay := entity.Category_Type{Category_Name: "โอนตืนเงิน"}
+	Parcel := entity.Category_Type{Category_Name: "พัสดุ"}
+	Etc := entity.Category_Type{Category_Name: "อื่นๆ"}
 
-	// FacilityGym := entity.FacilityType{Name: "ฟิตเนส"}
-	// FacilityMeetRoom := entity.FacilityType{Name: "ห้องประชุม"}
+	Testledger := entity.Ledger{Description: "เงินจากทางบ้าน",Amount: 1111,MemberID: 1,Money_Type_ID: 1}
 
-	// db.FirstOrCreate(&GenderMale, &entity.Gender{Name: "ชาย"})
-	// db.FirstOrCreate(&GenderFemale, &entity.Gender{Name: "หญิง"})
-	// db.FirstOrCreate(&GenderOther, &entity.Gender{Name: "อื่นๆ"})
+	db.FirstOrCreate(&Income, &entity.Money_Type{Type: "รายรับ"})
+	db.FirstOrCreate(&Outcome, &entity.Money_Type{Type: "รายจ่าย"})
 
-	// db.FirstOrCreate(&PetAllow, &entity.PetAllow{Name: "อนุญาต"})
-	// db.FirstOrCreate(&PetNotAllow, &entity.PetAllow{Name: "ไม่อนุญาต"})
+	db.FirstOrCreate(&Food_drink, &entity.Category_Type{Category_Name: "มื้ออาหาร/เครื่องดื่ม"})
+	db.FirstOrCreate(&Shopping, &entity.Category_Type{Category_Name: "ช้อปปิ้ง"})
+	db.FirstOrCreate(&Family_Personal, &entity.Category_Type{Category_Name: "ครอบครัว/ส่วนตัว"})
+	db.FirstOrCreate(&Invest, &entity.Category_Type{Category_Name: "ออมเงิน/ลงทุน"})
+	db.FirstOrCreate(&Bill, &entity.Category_Type{Category_Name: "ชำระบิล"})
+	db.FirstOrCreate(&Entertainment, &entity.Category_Type{Category_Name: "บันเทิง"})
+	db.FirstOrCreate(&Gift_give, &entity.Category_Type{Category_Name: "ของขวัญ/บริจาค"})
+	db.FirstOrCreate(&Transport, &entity.Category_Type{Category_Name: "ค่าเดินทาง"})
+	db.FirstOrCreate(&Education, &entity.Category_Type{Category_Name: "การศึกษา"})
+	db.FirstOrCreate(&Hotel_Travel, &entity.Category_Type{Category_Name: "โรงแรม/ท่องเที่ยว"})
+	db.FirstOrCreate(&Insure, &entity.Category_Type{Category_Name: "ประกัน"})
+	db.FirstOrCreate(&Withdraw, &entity.Category_Type{Category_Name: "ถอนเงิน"})
+	db.FirstOrCreate(&Healty_Beauty, &entity.Category_Type{Category_Name: "สุขภาพ/ความงาม"})
+	db.FirstOrCreate(&Pet, &entity.Category_Type{Category_Name: "สัตว์เลี้ยง"})
+	db.FirstOrCreate(&Home, &entity.Category_Type{Category_Name: "บ้าน/ที่พักอาศัย"})
+	db.FirstOrCreate(&Repay, &entity.Category_Type{Category_Name: "โอนเงินคืน"})
+	db.FirstOrCreate(&Parcel, &entity.Category_Type{Category_Name: "พัสดุ"})
+	db.FirstOrCreate(&Etc, &entity.Category_Type{Category_Name: "อื่นๆ"})
 
-	// db.FirstOrCreate(&RoomAvaliable, &entity.RoomType{Name: "พร้อมใช้งาน"})
-	// db.FirstOrCreate(&RoomNotAvaliable, &entity.RoomType{Name: "มีผู้พักอาศัย"})
-	// db.FirstOrCreate(&RoomMaintenance, &entity.RoomType{Name: "ซ่อมบำรุง"})
-
-	// db.FirstOrCreate(&PositionDormitoryAdmin, &entity.Position{Name: "ไอที"})
-	// db.FirstOrCreate(&PositionDormitoryCaretaker, &entity.Position{Name: "ผู้ดูแลหอพัก"})
-	// db.FirstOrCreate(&PositionDormitorySecurityGuard, &entity.Position{Name: "ผู้ดูแลรักษาความปลอดภัยหอพัก"})
-	// db.FirstOrCreate(&PositionDormitoryMaid, &entity.Position{Name: "แม่บ้าน"})
-	// db.FirstOrCreate(&PositionDormitoryMaintenanceTechnician, &entity.Position{Name: "ช่างซ่อมบำรุง"})
-	// db.FirstOrCreate(&PositionDormitoryMember, &entity.Position{Name: "ผู้พักอาศัย"})
-
-	// db.FirstOrCreate(&FacilityOpen, &entity.FacilityStatus{Name: "เปิดใช้งาน"})
-	// db.FirstOrCreate(&FacilityClose, &entity.FacilityStatus{Name: "ปิดใช้งาน"})
-	// db.FirstOrCreate(&FacilityMaintenace, &entity.FacilityStatus{Name: "ซ่อมบำรุง"})
-
-	// db.FirstOrCreate(&FacilityGym, &entity.FacilityType{Name: "ฟิตเนส"})
-	// db.FirstOrCreate(&FacilityMeetRoom, &entity.FacilityType{Name: "ห้องประชุม"})
+	db.FirstOrCreate(&Testledger, &entity.Ledger{Description: "เงินจากทางบ้าน",Amount: 1111,MemberID: 1,Money_Type_ID: 1})
 
 	hashedPassword, _ := HashPassword("12345")
 
