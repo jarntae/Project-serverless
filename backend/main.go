@@ -27,61 +27,23 @@ func main() {
     {   
         router.Use(middlewares.Authorizes())
 
-        // // Employee Route
-        // r.POST("/employee", controller.CreateEmployee)
-        // r.GET("/employees", controller.GetEmployees)
-        // r.GET("/employee/:id", controller.GetEmployeeByID)
-        // r.PATCH("/employee/:id", controller.UpdateEmployee)
-        // r.DELETE("/employee/:id", controller.DeleteEmployee)
-        // r.PATCH("/employee/:id/changePasswordEmployee", controller.ChangePasswordEmployee)
-        // r.POST("/checkEmail/:email", controller.CheckEmail)
-        // r.POST("/checkPhone/:phoneNumber", controller.CheckPhone)
-        // r.POST("/checkNationalID/:nationalID", controller.CheckNationalID)
+        // Member Route
+        r.GET("/Member/:id", controller.GetMemberByID)
+        r.POST("/Member", controller.CreateMember)
+        r.PATCH("/UpdateMember/:id", controller.UpdateMember)
 
-        // // Member Route
-        // r.POST("/member", controller.CreateMember)
-        // r.GET("/members", controller.GetMembers)
-        // r.GET("/member/:id", controller.GetMemberByID)
-        // r.PATCH("/member/:id", controller.UpdateMember)
-        // r.DELETE("/member/:id", controller.DeleteMember)
-        // r.PATCH("/member/:id/chanagePasswordMember", controller.ChangePasswordMember)
+        // Ledger Route
+        r.GET("/LedgerByMemberID/:id", controller.GetLedgerByMemberID)
+        r.POST("/Ledger", controller.CreateLedger)
+        r.PATCH("/UpdateLedger/:id", controller.UpdateLeder)
+        r.DELETE("/Deleteledger/:id", controller.DeleteLedger)
 
-        // //Room Routes
-        // r.POST("/room", controller.CreateRoom)
-        // r.PATCH("/room/:id", controller.UpdateRoom)
-        // r.DELETE("/room/:id", controller.DeleteRoom)
-        // r.GET("/room/:id", controller.GetRoomByID)
-        // r.GET("/rooms", controller.GetRooms)
-        // r.POST("/checkRoomName/:roomName", controller.CheckRoomName)
-        // r.GET("/roomtypes", controller.GetRoomTypes) //RoomType
-        // r.GET("/petallows", controller.GetPetAllows) //PetAllow
+        // MoneyType Routes
+        r.GET("/MoneyType", controller.GetMoneyType) //PetAllow
 
-        // // Facility Routes
-        // r.POST("/facility", controller.CreateFacility)
-        // r.PATCH("/facility/:id", controller.UpdateFacility)
-        // r.DELETE("/facility/:id", controller.DeleteFacility)
-        // r.GET("/facility/:id", controller.GetFacilityByID)
-        // r.GET("/facilitys", controller.GetFacilitys)
-        // r.GET("/facilityOpen", controller.GetFacilityOpen)
-        // r.POST("/checkFacilityName/:facilityName", controller.CheckFacilityName)
-        // r.GET("/facilitystatus", controller.GetFacilityStatus)
-        // r.GET("/facilitytype", controller.GetFacilityTypes)
+        // CategoryType Routes
+        r.GET("/CategoryType", controller.GetCategoryType)
 
-        // r.POST("/booking", controller.CreateBooking)
-        // r.DELETE("/booking/:id", controller.DeleteBookingByID)
-        // r.DELETE("/bookings/:id", controller.DeleteBookingsByFacilityID)
-        // r.GET("/booking/:id", controller.GetBookingByID)
-        // r.GET("/bookingsFacility/:id", controller.GetBookingFacilityByID)
-        // r.GET("/memberBooking/:id", controller.GetMemberBookingByID)
-        // r.GET("/bookingMembers/:id", controller.GetBookingMemberbyID)
-        // r.PUT("/checkBooking", controller.CheckBooking)
-
-        // // Gender Routes
-        // r.GET("/genders", controller.GetGenders)
-
-        // // Position Routes
-        // r.GET("/positions", controller.GetPositions)
-        // r.GET("/positionEmployee", controller.GetPositionEmployee)
 
 }
 
