@@ -8,7 +8,7 @@ import (
 
     "github.com/gin-gonic/gin"
 )
-const PORT = "8001"
+const PORT = "8002"
 func main() {
    // open connection database
     config.ConnectionDB()

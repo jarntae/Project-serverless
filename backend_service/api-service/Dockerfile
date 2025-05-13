@@ -9,5 +9,5 @@ COPY shared/ ./shared
 RUN go mod tidy
 RUN go build -o api-service .
 
-EXPOSE 8001
+EXPOSE 8002
 CMD ["./api-service"]

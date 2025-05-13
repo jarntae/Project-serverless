@@ -1,42 +1,29 @@
 package main
 
 import (
-    "net/http"
-
-    "github.com/cpe-nuntawut/assignment-6-bobox/config"
-    "github.com/cpe-nuntawut/assignment-6-bobox/controller"
-    "github.com/cpe-nuntawut/assignment-6-bobox/middlewares"
-
+	"net/http"
     "github.com/gin-gonic/gin"
+	"github.com/cpe-nuntawut/assignment-6-bobox/config"
+    "github.com/cpe-nuntawut/assignment-6-bobox/controller"
+	"github.com/cpe-nuntawut/assignment-6-bobox/middlewares"
 )
 
 const PORT = "8001"
 
 func main() {
-   // open connection database
+	// open connection database
     config.ConnectionDB()
-
-   // Generate databases
-    config.SetupDatabase()
-
     r := gin.Default()
-    r.Use(CORSMiddleware())
-
-   // Auth Route
+	r.Use(CORSMiddleware())
+    // Auth Route
     r.POST("/signIn", controller.SignIn)
 
-    router := r.Group("/")
-    {   
-        router.Use(middlewares.Authorizes())
-
-}
-
+    // ตรวจสอบสถานะ
     r.GET("/", func(c *gin.Context) {
-        c.String(http.StatusOK, "API RUNNING... PORT: %s", PORT)
+        c.String(http.StatusOK, "auth-service is running on port %s", PORT)
     })
 
-    // Run the server
-    r.Run("0.0.0.0:" + PORT)
+    r.Run(":8001")
 }
 
 func CORSMiddleware() gin.HandlerFunc {
