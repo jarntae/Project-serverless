@@ -3,8 +3,8 @@ FROM golang:1.23
 
 WORKDIR /app
 
-COPY auth-service/ .         
-COPY shared/ ./shared  
+COPY backend_service/auth-service/ .         
+COPY backend_service/shared/ ./shared  
 
 RUN go mod tidy
 
