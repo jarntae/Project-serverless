@@ -1,33 +1,17 @@
 pipeline {
     agent any
 
-    environment {
-        COMPOSE_PROJECT_DIR = "${WORKSPACE}"
-    }
-
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
-
         stage('Build') {
             steps {
-                script {
-                    sh '/usr/local/bin/docker-compose down'
-                    sh '/usr/local/bin/docker-compose up --build'
-                }
+                sh 'docker-compose down'
+                sh 'docker-compose up --build -d'
             }
-        }
-    }
-
-    post {
-        success {
-            echo '✅ Build and Deploy สำเร็จ'
-        }
-        failure {
-            echo '❌ Build หรือ Deploy ล้มเหลว'
         }
     }
 }
