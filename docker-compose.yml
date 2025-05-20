@@ -56,6 +56,7 @@ services:
       context: .
       dockerfile: Jenkins/Dockerfile
     container_name: jenkins
+    privileged: true
     ports:
       - "8080:8080"
       - "50000:50000"
