@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        git 'Default'  // ชื่อ Git ที่ตั้งไว้ใน Jenkins Global Tool Configuration
+    }
 
     stages {
         stage('Checkout') {
